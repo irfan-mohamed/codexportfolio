@@ -1,60 +1,56 @@
 'use client';
 
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from './ui/button';
 
-const links = [
-  'Home',
-  'About',
-  'Skills',
-  'Projects',
-  'Experience',
-  'GitHub',
-  'Contact',
-];
+const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'GitHub', 'Contact'];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-slate-950/85 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#home" className="text-lg font-semibold tracking-tight">
-          Irfan<span className="text-primary">.dev</span>
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-border/80 bg-slate-950/75 px-4 py-3 backdrop-blur-xl md:px-6">
+        <a href="#home" className="text-sm font-semibold tracking-[0.2em] text-slate-100">
+          IRFAN<span className="text-primary">.DEV</span>
         </a>
 
-        <button
-          onClick={() => setOpen((value) => !value)}
-          className="rounded-lg border border-border p-2 md:hidden"
-          aria-label="Toggle menu"
-        >
-          <Menu size={18} />
-        </button>
-
-        <ul className="hidden gap-7 text-sm md:flex">
-          {links.map((link) => (
-            <li key={link}>
-              <a
-                href={`#${link.toLowerCase()}`}
-                className="text-slate-300 transition-colors hover:text-primary"
-              >
-                {link}
+        <ul className="hidden items-center gap-6 text-sm md:flex">
+          {navLinks.map((item) => (
+            <li key={item}>
+              <a href={`#${item.toLowerCase()}`} className="text-slate-300 transition hover:text-primary">
+                {item}
               </a>
             </li>
           ))}
         </ul>
-      </nav>
+
+        <div className="hidden md:block">
+          <Button asChild size="default" variant="outline">
+            <a href="#contact">Let&apos;s Talk</a>
+          </Button>
+        </div>
+
+        <button
+          onClick={() => setOpen((prev) => !prev)}
+          className="rounded-lg border border-border p-2 md:hidden"
+          aria-label="Toggle navigation"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
 
       {open ? (
-        <ul className="space-y-3 border-t border-border px-6 py-4 md:hidden">
-          {links.map((link) => (
-            <li key={link}>
+        <ul className="mx-auto mt-2 max-w-6xl space-y-1 rounded-2xl border border-border bg-slate-950/95 p-4 md:hidden">
+          {navLinks.map((item) => (
+            <li key={item}>
               <a
+                href={`#${item.toLowerCase()}`}
                 onClick={() => setOpen(false)}
-                href={`#${link.toLowerCase()}`}
-                className="block py-1 text-slate-300 hover:text-primary"
+                className="block rounded-lg px-2 py-2 text-slate-300 transition hover:bg-slate-900 hover:text-primary"
               >
-                {link}
+                {item}
               </a>
             </li>
           ))}

@@ -8,17 +8,20 @@ html {
 
 body {
   @apply bg-background text-foreground antialiased;
-  background-image: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 45%);
 }
 
 .section-container {
   @apply mx-auto max-w-6xl px-6 py-20 md:py-28;
 }
 
-.glass-card {
-  @apply rounded-2xl border border-border bg-slate-900/60 backdrop-blur-sm;
+.section-heading {
+  @apply mb-8 text-3xl font-semibold tracking-tight md:text-4xl;
 }
 
-.gradient-text {
-  @apply bg-gradient-to-r from-primary via-accent to-orange bg-clip-text text-transparent;
+.glass-card {
+  @apply rounded-2xl border border-border bg-slate-900/65 shadow-[0_4px_30px_rgba(2,6,23,0.45)] backdrop-blur;
+}
+
+.input {
+  @apply w-full rounded-xl border border-border bg-slate-950/70 px-3.5 py-3 text-sm outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20;
 }
